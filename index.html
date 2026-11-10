@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WhiskerHub taşındı</title>
+<link rel="icon" type="image/png" href="whiskerhub.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#e9ecf0; --panel:#f7f8fa; --line:#cdd2da; --ink:#363b47; --ink2:#6b7280;
+  --pink:#f0cfdd; --blue:#cfe0f1; --lilac:#e0d8f0; --btn:#3b4050;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:"Nunito","Trebuchet MS",system-ui,sans-serif;position:relative;min-height:100vh;display:flex;flex-direction:column}
+header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px clamp(16px,4vw,40px);background:var(--panel);border-bottom:1px solid var(--line)}
+.logo{height:38px;width:auto;display:block}
+.status{display:flex;align-items:center;gap:8px;font-size:.82rem;padding:5px 12px;border-radius:99px;background:var(--lilac);border:1px solid #d1c6e8}
+.status i{width:8px;height:8px;border-radius:50%;background:#c58aa8;animation:pulse 1.8s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.3}}
+nav{display:flex;gap:18px;font-size:.88rem}
+nav a{color:var(--ink2);text-decoration:none}
+nav a:hover{color:var(--ink)}
+main{flex:1;width:100%;max-width:980px;margin:0 auto;padding:clamp(24px,5vw,48px) 16px 8px;text-align:center}
+h1{font-family:"Fredoka","Baloo 2","Trebuchet MS",sans-serif;font-size:clamp(2.6rem,9vw,4.6rem);letter-spacing:.03em;font-weight:700;color:var(--ink);text-shadow:3px 3px 0 var(--pink),6px 6px 0 var(--blue)}
+.sub{margin-top:6px;font-size:1.1rem;color:var(--ink2)}
+.desc{margin:14px auto 0;max-width:56ch;line-height:1.6;color:var(--ink2);font-size:.98rem}
+.stage{position:relative;margin-top:30px;border:1px solid var(--line);border-radius:20px;background:#f1f3f6;box-shadow:0 8px 24px -14px rgba(60,65,80,.35);overflow:hidden}
+.stage canvas{display:block;width:100%;height:auto;aspect-ratio:240/100;image-rendering:pixelated;image-rendering:crisp-edges}
+.tag{position:absolute;top:10px;transform:translateX(-50%);font-size:.7rem;font-weight:700;letter-spacing:.08em;padding:3px 10px;border-radius:99px;background:var(--panel);border:1px solid var(--line);color:var(--ink2);white-space:nowrap}
+.tag.old{left:15%;background:var(--pink)}
+.tag.new{left:86%;background:var(--blue)}
+.prog{display:flex;align-items:center;gap:12px;padding:10px 16px 14px;font-size:.78rem;color:var(--ink2);border-top:1px solid var(--line);background:var(--panel)}
+.bar{flex:1;height:8px;border-radius:99px;background:#e1e4ea;overflow:hidden}
+.bar b{display:block;height:100%;width:0;background:#b9a8dc;border-radius:99px;transition:width .6s ease}
+footer{padding:36px 16px 44px;text-align:center}
+.addr{font-size:.9rem;color:var(--ink2);margin-bottom:16px}
+.addr span{display:inline-block;margin-top:4px;padding:5px 14px;border-radius:10px;background:var(--panel);border:1px solid var(--line);color:var(--ink);word-break:break-all}
+.cta{position:relative;display:inline-block;padding:18px 36px;border-radius:99px;background:var(--btn);color:#fff;font-family:"Fredoka",sans-serif;font-weight:600;letter-spacing:.05em;font-size:clamp(.95rem,3.8vw,1.15rem);text-decoration:none;box-shadow:0 0 0 6px var(--pink),0 10px 24px -8px rgba(59,64,80,.6);transition:transform .2s,box-shadow .2s}
+.cta:hover{transform:translateY(-2px);box-shadow:0 0 0 8px var(--lilac),0 14px 28px -8px rgba(59,64,80,.6)}
+.cta:focus-visible{outline:3px solid #8fb2d9;outline-offset:6px}
+.note{margin-top:22px;font-size:.78rem;color:var(--ink2)}
+@media(max-width:560px){nav{display:none}.logo{height:32px}.tag{font-size:.6rem;padding:2px 7px}}
+.status,.tag,.sub{font-family:"Fredoka",sans-serif}
+.sub{font-weight:500;font-size:1.25rem}
+.desc{font-weight:600}
+.cta.press{transform:scale(.93);box-shadow:0 0 0 8px var(--lilac),0 4px 10px -6px rgba(59,64,80,.6);background:#4b5166}
+.cta.press::after{content:"";position:absolute;inset:-6px;border-radius:99px;border:3px solid var(--pink);animation:rip .9s ease-out forwards}
+@keyframes rip{to{transform:scale(1.3);opacity:0}}
+#walker{position:absolute;display:none;pointer-events:none;image-rendering:pixelated;image-rendering:crisp-edges;z-index:5;transform-origin:50% 93%}
+</style>
+</head>
+<body>
+<header>
+  <img class="logo" src="whiskerhub.png" alt="WhiskerHub">
+  <nav><a href="https://whiskerhub.github.io/">Yeni adres</a></nav>
+  <div class="status"><i></i>Taşınma sürüyor</div>
+</header>
+
+<main>
+  <h1>TAŞINDIK!</h1>
+  <p class="sub">WhiskerHub'ın yeni bir evi var.</p>
+  <p class="desc">Her şeyi paketledik ve yeni bir yere taşındık. Küçük kedimiz hâlâ son kutuları taşıyor ama siz şimdi yeni evimizi ziyaret edebilirsiniz!</p>
+
+  <div class="stage">
+    <canvas id="scene" width="240" height="100" role="img" aria-label="Kedi eski evden yeni eve eşya taşıyor"></canvas>
+    <span class="tag old">ESKİ EV</span><span class="tag new">YENİ EV</span>
+    <div class="prog"><span>Yeni evde</span><div class="bar"><b id="bar"></b></div><span id="cnt">0 / 5 eşya</span></div>
+  </div>
+</main>
+
+<footer>
+  <p class="addr">Yeni WhiskerHub adresi<br><span>https://whiskerhub.github.io/</span></p>
+  <a class="cta" href="https://whiskerhub.github.io/">YENİ WHISKERHUB'I ZİYARET EDİN</a>
+  <p class="note">Eski adres artık güncellenmiyor. Yer imlerinizi yeni adrese taşımayı unutmayın.</p>
+</footer>
+
+<canvas id="walker" width="40" height="30" aria-hidden="true"></canvas>
+<script>
+(() => {
+'use strict';
+const cv = document.getElementById('scene'), ctx = cv.getContext('2d');
+const bar = document.getElementById('bar'), cnt = document.getElementById('cnt');
+const btn = document.querySelector('.cta'), wc = document.getElementById('walker'), wx = wc.getContext('2d');
+const W = 240, H = 100, GY = 88;
+const K = '#3b2f4f';
+const CAT = { b:'#f2b880', d:'#d98f4e', w:'#fff4e6', p:'#ff9ec7', e:'#2a2140', wh:'#6a5a8a' };
+const R = (x,y,w,h,c) => { ctx.fillStyle = c; ctx.fillRect(Math.round(x), Math.round(y), w, h); };
+
+/* ---------- eşyalar: [x,y,w,h,renk], alt-orta çıpa ---------- */
+const G = '#8fbf9f', PK = '#e8b4c8';
+const ITEMS = {
+  box:   [[-5,-7,10,7,K],[-4,-6,8,5,'#d8c3a8'],[-1,-6,2,3,'#c2a888'],[2,-3,2,2,PK]],
+  plant: [[-3,-4,6,4,K],[-2,-3,4,3,PK],[-1,-9,2,5,G],[-4,-8,3,2,G],[1,-7,3,2,G]],
+  lamp:  [[-4,-12,9,6,K],[-3,-11,7,4,'#d6cdea'],[0,-7,1,6,K],[-3,-1,7,1,K]],
+  chair: [[-4,-10,2,10,K],[-4,-5,9,2,K],[3,-5,2,5,K],[-3,-9,1,4,'#b9cfe6'],[-3,-4,7,1,'#b9cfe6']],
+  books: [[-5,-3,10,3,K],[-4,-2,8,1,'#cfe0f1'],[-4,-6,8,3,K],[-3,-5,6,1,PK],[-3,-8,6,2,K],[-2,-7,4,1,'#d6cdea']],
+  pillow:[[-5,-5,10,5,K],[-4,-4,8,3,'#e6d9f3'],[1,-3,2,1,PK]],
+  deco:  [[-2,-6,5,6,K],[-1,-5,3,4,PK],[0,-9,1,3,G],[-1,-10,3,1,PK]]
+};
+const TYPES = Object.keys(ITEMS);
+function item(t, x, y, a) {
+  if (a < 1) ctx.globalAlpha = Math.max(0, a);
+  for (const [dx,dy,w,h,c] of ITEMS[t]) R(x+dx, y+dy, w, h, c);
+  ctx.globalAlpha = 1;
+}
+
+/* ---------- kedi (WhiskerPet sprite'ından) ---------- */
+function head(hx, hy, eyes) {
+  const sh = [[hx,hy,8,7,CAT.b],[hx,hy-2,2,2,CAT.b],[hx+6,hy-2,2,2,CAT.b]];
+  const dt = [[hx+1,hy-1,1,1,CAT.p],[hx+6,hy-1,1,1,CAT.p],[hx+3,hy,1,2,CAT.d],[hx+5,hy,1,2,CAT.d]];
+  if (eyes === 'open') dt.push([hx+3,hy+2,1,2,CAT.e],[hx+6,hy+2,1,2,CAT.e]);
+  else dt.push([hx+1,hy+3,1,1,CAT.e],[hx+2,hy+2,1,1,CAT.e],[hx+3,hy+3,1,1,CAT.e],[hx+5,hy+3,1,1,CAT.e],[hx+6,hy+2,1,1,CAT.e],[hx+7,hy+3,1,1,CAT.e]);
+  dt.push([hx+5,hy+4,3,2,CAT.w],[hx+7,hy+4,1,1,CAT.p],[hx+8,hy+4,2,1,CAT.wh],[hx+8,hy+6,2,1,CAT.wh]);
+  return { sh, dt };
+}
+const LEGS = [{x:-7,o:.5,far:1},{x:-4,o:0,far:0},{x:1,o:0,far:1},{x:3,o:.5,far:0}];
+function pose(f, walking, eyes, tw, crouch) {
+  const sh = [], dt = [];
+  sh.push([-11+tw,-13,2,6,CAT.b],[-10,-8,3,2,CAT.b]); dt.push([-11+tw,-13,2,2,CAT.d]);
+  for (const L of LEGS) {
+    let dx = 0, lift = 0;
+    if (walking) {
+      const p = ((f/4) + L.o) % 1;
+      if (p < .5) dx = Math.round(1 - 4*p); else { dx = Math.round(-1 + 4*(p-.5)); lift = p < .7 ? 1 : 2; }
+    }
+    const h = Math.max(1, 3 - lift);
+    sh.push([L.x+dx,-3,2,h,L.far ? CAT.d : CAT.b]); dt.push([L.x+dx,-3+h-1,2,1,CAT.w]);
+  }
+  sh.push([-8,-9,13,6,CAT.b]);
+  dt.push([-7,-4,11,1,CAT.w],[-6,-9,1,2,CAT.d],[-3,-9,1,2,CAT.d],[0,-9,1,2,CAT.d]);
+  const h = head(3, -13 + (crouch||0), eyes);
+  sh.push(...h.sh); dt.push(...h.dt);
+  return { sh, dt };
+}
+function drawCat(g, x, y, dir, p, lift) {
+  g.fillStyle = 'rgba(60,60,80,.22)'; g.fillRect(Math.round(x) - 10, y + 1, 20, 1);
+  g.save(); g.translate(Math.round(x), y - lift); g.scale(dir, 1);
+  g.fillStyle = K;
+  for (const [a,b,w,h] of p.sh) g.fillRect(a-1, b-1, w+2, h+2);
+  for (const [a,b,w,h,c] of p.sh) { g.fillStyle = c; g.fillRect(a,b,w,h); }
+  for (const [a,b,w,h,c] of p.dt) { g.fillStyle = c; g.fillRect(a,b,w,h); }
+  g.restore();
+}
+const HEART = ['.kk.kk.','kppkppk','kpppppk','.kpppk.','..kpk..','...k...'];
+function heart(h) {
+  const y = h.y - h.t*14; ctx.globalAlpha = Math.max(0, h.t > .8 ? 1 - (h.t - .8)/.5 : 1);
+  HEART.forEach((row, j) => [...row].forEach((c, i) => { if (c !== '.') R(h.x - 3 + i, y + j, 1, 1, c === 'k' ? K : '#ff6b9d'); }));
+  ctx.globalAlpha = 1;
+}
+
+/* ---------- evler ve fon ---------- */
+const OLDH = {wall:'#efe9e4',stripe:'#e6dcd6',wain:'#ddd0c8',roof:'#d7b6c5',roof2:'#c79fb0',trim:'#cbbfb8',curt:'#e8b4c8',L:true};
+const NEWH = {wall:'#eef2f7',stripe:'#e1e9f3',wain:'#d3deec',roof:'#b9cfe8',roof2:'#a2bcdb',trim:'#c3ccd8',curt:'#d6cdea',L:false};
+function house(x, w, o, t) {
+  const L = o.L, cx = x + (L ? 36 : 24), mx = x + w/2;
+  const chx = x + (L ? 42 : 10);
+  R(chx, 20, 8, 20, '#b98f86'); for (let j = 0; j < 5; j++) R(chx, 23 + j*4, 8, 1, '#a07a72');
+  R(chx - 1, 19, 10, 2, '#8c6c66'); R(chx + 2, 14 - (Math.floor(t*2) % 3), 3, 3, 'rgba(255,255,255,.7)');
+  R(x, 46, w, 42, o.wall);
+  for (let i = x + 3; i < x + w; i += 6) R(i, 46, 2, 28, o.stripe);
+  R(x, 74, w, 10, o.wain); R(x, 74, w, 1, '#fff'); R(x, 83, w, 1, '#a79a97');
+  R(x, 84, w, 4, '#c9a47e'); R(x, 84, w, 1, '#a8845f');
+  for (let i = x + 5; i < x + w; i += 9) R(i, 85, 1, 3, '#a8845f');
+  R(mx - 13, 86, 26, 2, o.curt); R(mx - 13, 86, 26, 1, '#fff');
+  const wx0 = L ? x - 3 : x + w;
+  R(wx0, 46, 3, 42, o.trim); for (let j = 48; j < 88; j += 4) R(wx0, j, 3, 1, 'rgba(0,0,0,.14)');
+  for (let r = 0; r < 16; r++) {
+    const rx = x - 4 + r*2, rw = w + 8 - r*4, y = 45 - r;
+    R(rx, y, rw, 1, r % 2 ? o.roof : o.roof2);
+    for (let k = (r % 2) * 2; k < rw; k += 4) R(rx + k, y, 1, 1, o.roof2);
+    R(rx, y, 1, 1, K); R(rx + rw - 1, y, 1, 1, K);
+  }
+  R(x + 26, 30, w - 52, 1, K); R(x - 4, 45, w + 8, 1, K); R(x - 3, 46, w + 6, 2, 'rgba(60,50,80,.2)');
+  R(cx - 7, 53, 14, 14, '#fff'); R(cx - 6, 54, 12, 12, '#9fb4c8');
+  ctx.globalAlpha = .75 + .25*Math.sin(t*1.5); R(cx - 6, 54, 12, 12, '#f8ecc9'); ctx.globalAlpha = 1;
+  R(cx, 54, 1, 12, '#fff'); R(cx - 6, 60, 12, 1, '#fff');
+  R(cx - 6, 54, 3, 9, o.curt); R(cx + 3, 54, 3, 9, o.curt);
+  R(cx - 8, 67, 16, 2, '#fff'); R(cx - 8, 69, 16, 1, '#d3d6dc');
+  R(cx - 5, 65, 2, 2, G); R(cx - 1, 64, 2, 3, PK); R(cx + 3, 65, 2, 2, G);
+  const px = L ? x + 8 : x + 40;
+  R(px, 56, 9, 7, '#fff'); R(px + 1, 57, 7, 5, o.curt); R(px + 4, 59, 2, 2, '#fff');
+  R(mx, 46, 1, 5, K); R(mx - 2, 51, 5, 3, o.curt); R(mx - 2, 51, 5, 1, '#fff');
+  R(L ? x + w : x - 8, 86, 8, 2, '#d9dce2');
+}
+const clouds = [{x:30,y:8,v:2},{x:120,y:16,v:1.4},{x:190,y:6,v:2.6}];
+function cloud(x, y) { R(x+3,y,4,1,'#fff'); R(x+1,y+1,9,1,'#fff'); R(x,y+2,12,1,'#fff'); R(x+2,y+3,8,1,'#f1f3f7'); }
+
+/* ---------- hikaye: sonsuz döngü ---------- */
+const OLD = [56, 44, 32, 20], NEW = [228, 217, 206, 195, 184];
+let n = 0, ph = 'toOld', t = 0, anim = 0, time = 0;
+let cat = { x: 120, dir: -1 };
+let hearts = [], hc = 0, wk = null;
+let oldItems = [], newItems = [], newCount = 0, restock = 1, carry = null, fly = null, dust = [], fade = 1;
+const SPEED = 30;
+
+function stock() { oldItems = OLD.map((_, i) => TYPES[(n*3 + i*2) % 7]); restock = 0; }
+stock();
+const oldIdx = () => n % 4;
+const stand = () => ph === 'toOld' ? OLD[oldIdx()] + 13 : NEW[newCount] - 13;
+
+function go(dt) {
+  const tx = stand(), d = tx - cat.x;
+  cat.dir = d > 0 ? 1 : -1;
+  if (Math.abs(d) <= SPEED*dt) { cat.x = tx; return true; }
+  cat.x += cat.dir * SPEED * dt; return false;
+}
+function setProgress() {
+  bar.style.width = (newCount / 5 * 100) + '%';
+  cnt.textContent = newCount + ' / 5 eşya';
+}
+
+function update(dt) {
+  time += dt; t += dt; restock = Math.min(1, restock + dt*2);
+  clouds.forEach(c => { c.x += c.v*dt; if (c.x > W + 12) c.x = -14; });
+  dust = dust.filter(d => (d.t += dt) < .5); hearts = hearts.filter(h => (h.t += dt) < 1.3);
+  const walking = ph === 'toOld' || ph === 'toNew';
+  if (walking) anim += dt;
+
+  if (ph === 'toOld') {
+    if (oldIdx() === 0 && oldItems.every(i => !i)) stock();
+    if (go(dt)) { ph = 'pick'; t = 0; cat.dir = -1; fly = { type: oldItems[oldIdx()], t: 0, x: OLD[oldIdx()] }; oldItems[oldIdx()] = null; }
+  } else if (ph === 'pick') {
+    if (fly) { fly.t += dt; if (fly.t >= .45) { carry = fly.type; fly = null; } }
+    if (t > .9) { ph = 'toNew'; t = 0; }
+  } else if (ph === 'toNew') {
+    if (go(dt)) { ph = 'drop'; t = 0; cat.dir = 1; fly = { type: carry, t: 0, x: NEW[newCount] }; carry = null; }
+  } else if (ph === 'drop') {
+    if (fly) { fly.t += dt; if (fly.t >= .4) {
+      newItems[newCount] = { type: fly.type, x: fly.x, pop: 0 }; newCount++; n++;
+      for (let i = 0; i < 4; i++) dust.push({ x: fly.x + (i-1.5)*3, vx: (i-1.5)*6, t: 0 });
+      fly = null; setProgress();
+    } }
+    if (t > 1) {
+      if (newCount >= 5) { ph = 'cheer'; t = 0; hc = 0; } else { ph = 'toOld'; t = 0; }
+    }
+  } else if (ph === 'cheer') {
+    if (hc < 3 && t > .15 + hc*.5) { hearts.push({ x: cat.x + 3 + (hc - 1)*6, y: GY - 24, t: 0 }); hc++; }
+    if (t > 1.9) { ph = 'exit'; startWalk(); }
+  } else if (ph === 'exit') { walkUpdate(dt); }
+  newItems.forEach(i => i && (i.pop += dt));
+}
+
+function render() {
+  ctx.clearRect(0, 0, W, H);
+  R(0, 0, W, GY, '#eef0f4');
+  R(0, 60, W, 28, '#e6e9ef');
+  R(0, 80, 6, 8, '#a9cdb5'); R(1, 78, 3, 2, '#a9cdb5'); R(2, 82, 1, 1, PK);
+  clouds.forEach(c => cloud(Math.round(c.x), c.y));
+  R(0, GY, W, H - GY, '#cfd3da'); R(0, GY, W, 1, '#aeb4bf');
+  for (let x = 4; x < W; x += 9) R(x, GY + 4 + (x*7 % 5), 2, 1, '#bfc4cd');
+  house(6, 60, OLDH, time);
+  house(176, 60, NEWH, time + 1);
+  // yol işaretleri
+  for (let x = 74; x < 168; x += 10) R(x, GY + 6, 5, 1, '#e3e6ec');
+
+  oldItems.forEach((it, i) => it && item(it, OLD[i], GY, i === 0 || true ? restock : 1));
+  newItems.forEach(it => {
+    if (!it) return;
+    const hop = it.pop < .15 ? Math.sin(it.pop / .15 * Math.PI) * 3 : 0;
+    item(it.type, it.x, GY - hop, fade);
+  });
+
+  const walking = ph === 'toOld' || ph === 'toNew';
+  const f = Math.floor(anim * 8) & 3;
+  const bob = walking && (f & 1) ? 1 : 0;
+  const crouch = ph === 'pick' && t < .45 ? 1 : 0;
+  const cheer = ph === 'cheer';
+  const eyes = cheer || (ph === 'drop' && t > .4) ? 'happy' : 'open';
+  const lift = cheer && t > .15 ? Math.round(Math.abs(Math.sin((t - .15)*5.4))*7) : 0;
+  if (ph !== 'exit') drawCat(ctx, cat.x, GY, cat.dir, pose(f, walking || lift > 0, eyes, Math.floor(anim*3) & 1, crouch), bob + lift);
+  hearts.forEach(heart);
+
+  if (carry) item(carry, cat.x - cat.dir*2, GY - 10 - bob, 1);
+  if (fly) {
+    const p = Math.min(1, fly.t / (ph === 'pick' ? .45 : .4));
+    const sx = ph === 'pick' ? fly.x : cat.x - cat.dir*2, ex = ph === 'pick' ? cat.x - cat.dir*2 : fly.x;
+    const sy = ph === 'pick' ? GY : GY - 10, ey = ph === 'pick' ? GY - 10 : GY;
+    item(fly.type, sx + (ex - sx)*p, sy + (ey - sy)*p - Math.sin(p*Math.PI)*9, 1);
+  }
+  dust.forEach(d => { ctx.globalAlpha = 1 - d.t*2; R(d.x + d.vx*d.t, GY - 1 - d.t*8, 2, 2, '#fff'); });
+  ctx.globalAlpha = 1;
+}
+
+/* ---------- kedi linke gider ---------- */
+function startWalk() {
+  const r = cv.getBoundingClientRect(), s = r.width / W;
+  wk = { s, x: r.left + scrollX + cat.x*s, y: r.top + scrollY + GY*s, dir: -1, t: 0, anim: 0, step: 'walk' };
+  wc.style.display = 'block'; wc.style.width = 40*s + 'px'; wc.style.height = 30*s + 'px';
+}
+function walkUpdate(dt) {
+  const w = wk, b = btn.getBoundingClientRect(), bx = b.left + scrollX + b.width/2, by = b.top + scrollY;
+  let k = 1; w.t += dt;
+  if (w.step === 'walk') {
+    w.anim += dt; const d = bx - w.x; w.dir = d > 0 ? 1 : -1;
+    if (Math.abs(d) <= SPEED*w.s*dt) { w.x = bx; w.step = 'jump'; w.t = 0; w.x0 = w.x; w.y0 = w.y; if (!reduce) btn.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+    else w.x += w.dir*SPEED*w.s*dt;
+  } else if (w.step === 'jump') {
+    const p = Math.min(1, w.t/.9); w.y = w.y0 + (by - w.y0)*p - Math.sin(Math.PI*p)*45*w.s;
+    if (p >= 1) { w.step = 'press'; w.t = 0; btn.classList.add('press'); }
+  } else if (w.step === 'press') {
+    const p = Math.min(1, w.t/.7); k = 1 - p; w.y = by + p*b.height*.55;
+    if (p >= 1) { wc.style.display = 'none'; w.step = 'gone'; w.t = 0; }
+  } else if (w.step === 'gone' && w.t > 1.5) {
+    btn.classList.remove('press'); wc.style.transform = ''; wk = null;
+    newItems = []; newCount = 0; carry = null; setProgress();
+    cat.x = 84; cat.dir = 1; ph = 'toOld'; t = 0;
+    for (let i = 0; i < 6; i++) dust.push({ x: 84 + (i - 2.5)*3, vx: (i - 2.5)*6, t: 0 });
+    return;
+  }
+  if (w.step === 'gone') return;
+  const air = w.step === 'jump';
+  wx.clearRect(0, 0, 40, 30);
+  drawCat(wx, 20, 28, w.dir, pose(air ? 0 : Math.floor(w.anim*8) & 3, w.step === 'walk' || air, air || w.step === 'press' ? 'happy' : 'open', Math.floor(w.anim*3) & 1, 0), 0);
+  wc.style.left = (w.x - 20*w.s) + 'px'; wc.style.top = (w.y - 28*w.s) + 'px'; wc.style.transform = 'scale(' + k + ')';
+}
+
+/* ---------- döngü: görünürken ve sekme açıkken çalışır ---------- */
+const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+let last = 0, visible = true;
+function frame(ts) {
+  requestAnimationFrame(frame);
+  if ((!visible && ph !== 'exit') || document.hidden) { last = 0; return; }
+  if (!last) last = ts;
+  const dt = Math.min((ts - last) / 1000, .05); last = ts;
+  update(dt); render();
+}
+if (reduce) { for (let i = 0; i < 200; i++) update(.05); render(); }
+else {
+  if ('IntersectionObserver' in window) new IntersectionObserver(e => visible = e[0].isIntersecting).observe(cv);
+  requestAnimationFrame(frame);
+}
+})();
+</script>
+</body>
+</html>
